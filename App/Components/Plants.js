@@ -8,7 +8,7 @@ import * as WebBrowser from 'expo-web-browser';
 
 export default function Plants(props) {
   const [refreshing, setRefreshing] = useState(false);
-  const webAction = item => WebBrowser.openBrowserAsync(item.url);
+  const webAction = item => WebBrowser.openBrowserAsync(item.http_image_url);
 
   const listItemRenderer = item => {
     return (
@@ -17,7 +17,7 @@ export default function Plants(props) {
 
           <View style={styles.plantView}>
             <Image style={styles.plantPicture}
-              source={{ uri: item.image_url }} />
+              source={{ uri: item.http_image_url }} />
             <View style={styles.plantDetails}>
               <Text style={human.title1}>{item.common_name}</Text>
               <Text style={[human.body, { flex: 1, flexShrink: 1 }]}>
