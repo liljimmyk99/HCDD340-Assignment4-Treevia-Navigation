@@ -55,6 +55,23 @@ export default function App() {
   );
 }
 
+
+
+//Plant Tab
+
+//Listing Screen
+function ListingTab(){
+
+}
+
+//Details Screen
+
+
+//Settings Tab
+function SettingsTab(){
+
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
