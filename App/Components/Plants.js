@@ -12,7 +12,7 @@ export default function Plants(props) {
 
   const listItemRenderer = item => {
     return (
-      <TouchableOpacity onPress={() => props.navigation.navigate('details', {plant: item})}>
+      <TouchableOpacity onPress={() => props.navigation.navigate('Details', {item: item})}>
         <View style={styles.plants}>
 
           <View style={styles.plantView}>
