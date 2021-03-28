@@ -2,12 +2,43 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ActivityIndicator } from 'react-native';
 import { Images, Colors } from './App/Themes'
 import APIRequest from './App/Config/APIRequest'
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import Plants from './App/Components/Plants'
 import Search from './App/Components/Search'
 import Logo from './App/Components/Logo'
 
+
+const Tab = createBottomTabNavigator();
 export default function App() {
+  return(
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="listing" component={PlantStack}/>
+        <Tab.Screen name="settings" component={SettingsTab}/>
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
+//Plant Tab
+const Stack = createStackNavigator();
+function PlantStack(){
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name="listing" component={ListingScreen}/>
+      <Stack.Screen name="details" component={DetailsScreen}/>
+    </Stack.Navigator>
+  );
+}
+
+//Listing Screen
+function ListingScreen({route, navigation}){
+  console.log("I did something")
+
   const [loading, setLoading] = useState(false);
   const [plants, setPlants] = useState([]);
   const [searchPlantTerm] = useState("");
@@ -40,7 +71,7 @@ export default function App() {
         size="large" color="black" />
     )
   } else {
-    contentDisplayed = <Plants plants={plants} />
+    contentDisplayed = <Plants plants={plants} navigation={navigation}/>
   }
 
   return (
@@ -55,21 +86,42 @@ export default function App() {
   );
 }
 
+//Details Screen
+function DetailsScreen({route, navigation}){
+  const{plant} = route.params;
+  console.log(plant)
 
+  return(
+    <View>
+      <Text>Details</Text>
+    </View>
+  );
+  //Text Items that display the following info
 
-//Plant Tab
+  //Common Name
+  //Scientific Name
+  //Family
+  //Genus
+  //The Image
+  //year
 
-//Listing Screen
-function ListingTab(){
 
 }
 
-//Details Screen
 
 
 //Settings Tab
-function SettingsTab(){
+function SettingsTab({route, navigation}){
 
+  return(
+    <View style={styles.container}>
+      <Text>Settings</Text>
+    </View>
+  );
+  //Checkbox for filter Vegetable
+  //Checkbox for filter Edible
+  //Picker for Flower Color
+  //Drop down list for Fruit Color
 }
 
 const styles = StyleSheet.create({
